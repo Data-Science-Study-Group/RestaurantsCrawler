@@ -8,18 +8,16 @@ import org.json.JSONArray;
 public class Restaurant {
 
     private String restaurantsName;
-//    private String restaurantsAddress;
     private String restaurantsTel;
     private String restaurantsImgUrl;
     private String restaurantsDescription;
     private String restaurantsRunningTime;
     private LocationInfo restaurantsLocationInfo;
+    private SearchRange searchRange;
 
     public Restaurant(String restaurantsName,
-//                      String restaurantsAddress,
                       String restaurantsTel) {
         this.restaurantsName = restaurantsName;
-//        this.restaurantsAddress = restaurantsAddress;
         this.restaurantsTel = restaurantsTel;
     }
 
@@ -30,14 +28,6 @@ public class Restaurant {
     public void setRestaurantsName(String restaurantsName) {
         this.restaurantsName = restaurantsName;
     }
-
-//    public String getRestaurantsAddress() {
-//        return restaurantsAddress;
-//    }
-//
-//    public void setRestaurantsAddress(String restaurantsAddress) {
-//        this.restaurantsAddress = restaurantsAddress;
-//    }
 
     public String getRestaurantsTel() {
         return restaurantsTel;
@@ -59,9 +49,7 @@ public class Restaurant {
         return restaurantsDescription;
     }
 
-    public void setRestaurantsDescription(String restaurantsDescription) {
-        this.restaurantsDescription = restaurantsDescription;
-    }
+    public void setRestaurantsDescription(String restaurantsDescription) { this.restaurantsDescription = restaurantsDescription; }
 
     public String getRestaurantsRunningTime() {
         return restaurantsRunningTime;
@@ -72,6 +60,10 @@ public class Restaurant {
     public LocationInfo getRestaurantsLocationInfo() { return restaurantsLocationInfo; }
 
     public void setRestaurantsLocationInfo(LocationInfo restaurantsLocationInfo) { this.restaurantsLocationInfo = restaurantsLocationInfo; }
+
+    public SearchRange getSearchRange() { return searchRange; }
+
+    public void setSearchRange(SearchRange searchRange) { this.searchRange = searchRange; }
 
     public String[] toStringArray() {
         String[] strings = new String[]{restaurantsName, restaurantsTel, restaurantsImgUrl, restaurantsDescription, restaurantsRunningTime};

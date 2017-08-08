@@ -7,6 +7,8 @@ import com.woowa.fileout.FileOutput;
 import com.woowa.fileout.JsonFileOutPut;
 import com.woowa.model.LocationInfo;
 import com.woowa.model.Restaurant;
+import com.woowa.model.SearchRange;
+import com.woowa.searchRange.RangeCalculator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -30,6 +32,7 @@ public class Controller {
         FileOutput csvFileOutput = new CSVFileOutput(region);
         FileOutput jsonFileOutPut = new JsonFileOutPut(region);
         LatLonConverter latLonConverter = new LatLonConverter();
+        RangeCalculator rangeCalculator = new RangeCalculator(0.006, 0.007);
 
         try {
             ArrayList<Restaurant> restaurantList = crawler.searchRestaurantByLocalName(region);
@@ -42,6 +45,9 @@ public class Controller {
                 log.debug("경도 : "+latLon[1].toString()+"");
                 addressInfo.setRestaurantsLatitude(latLon[0].toString());
                 addressInfo.setRestaurantsLongitude(latLon[1].toString());
+
+                SearchRange searchRange = rangeCalculator.getSearchRange(latLon);
+                restaurantList.get(i).setSearchRange(searchRange);
             }
 
             csvFileOutput.makeFile(restaurantList);
